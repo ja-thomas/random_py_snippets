@@ -1,7 +1,7 @@
 
 class Robot():
 
-    __allowed_cities = {"Erlange", "Nürnberg", "Fürth"}
+    __allowed_cities = {"Erlangen", "Nürnberg", "Fürth"}
 
     __forbidden_names = {"Henry"}
 
