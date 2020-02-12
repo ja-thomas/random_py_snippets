@@ -1,5 +1,6 @@
 def counter(func):
     k = 0
+
     def wrapper(*args, **kwargs):
         nonlocal k
         res = func(*args, **kwargs)
@@ -7,7 +8,6 @@ def counter(func):
         print("Function {} was successfully called {} times".format(func.__name__, k))
         return res
     return wrapper
-
 
 
 if __name__ == "__main__":
