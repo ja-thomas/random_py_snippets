@@ -1,9 +1,27 @@
 
-class Robot():
+class allowed(type):
+    def __init__(cls, *args, **kwargs):
+        cls.allowed_cities = {"Erlangen", "Nürnberg", "Fürth"}
+        cls.forbidden_names = {"Henry"}
 
-    __allowed_cities = {"Erlangen", "Nürnberg", "Fürth"}
+    @property
+    def allowed_cities(cls):
+        return cls.__allowed_cities
 
-    __forbidden_names = {"Henry"}
+    @allowed_cities.setter
+    def allowed_cities(cls, value):
+        cls.__allowed_cities = value
+
+    @property
+    def forbidden_names(cls):
+        return cls.__forbidden_names
+
+    @forbidden_names.setter
+    def forbidden_names(cls, value):
+        cls.__forbidden_names = value
+
+
+class Robot(metaclass=allowed):
 
     def __init__(self, name, city):
         self.name = name
@@ -15,7 +33,7 @@ class Robot():
 
     @name.setter
     def name(self, name):
-        if name in Robot.__forbidden_names:
+        if name in Robot.forbidden_names:
             raise NameError("{} is an forbidden name".format(name))
         self.__name = name
 
@@ -25,7 +43,7 @@ class Robot():
 
     @city.setter
     def city(self, city):
-        if city not in Robot.__allowed_cities:
+        if city not in Robot.allowed_cities:
             raise NameError("{} is not a valid city.".format(city))
         self.__city = city
 
